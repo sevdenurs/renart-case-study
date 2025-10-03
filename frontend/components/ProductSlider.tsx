@@ -1,57 +1,57 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
-import { fetchProducts, Product } from "../app/lib/api";
+import { useEffect, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Scrollbar } from "swiper/modules"; 
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/scrollbar";
+
 import ProductCard from "./ProductCard";
+import { fetchProducts, Product } from "../app/lib/api";
 
 export default function ProductSlider() {
-  const ref = useRef<HTMLDivElement>(null);
   const [items, setItems] = useState<Product[]>([]);
 
   useEffect(() => {
-    fetchProducts()
-      .then(setItems)
-      .catch((e) => console.error("Ürünler alınamadı:", e));
+    (async () => {
+      try {
+        const data = await fetchProducts();
+        setItems(data);
+      } catch (err) {
+        console.error("Ürünler alınamadı:", err);
+      }
+    })();
   }, []);
 
-  const scroll = (dir: "left" | "right") => {
-    ref.current?.scrollBy({
-      left: dir === "left" ? -300 : 300,
-      behavior: "smooth",
-    });
-  };
-
   return (
-    <div className="relative">
-      <button
-        onClick={() => scroll("left")}
-        className="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-2 bg-white/90 hover:bg-white rounded-full shadow"
-        aria-label="Scroll Left"
-      >
-        ←
-      </button>
+    <div className="w-full relative pb-12">
+      <h2 className="text-2xl font-semibold text-center mb-6">Product List</h2>
 
-      <div
-        ref={ref}
-        className="flex gap-6 overflow-x-auto scroll-smooth snap-x px-8 py-4"
+      <Swiper
+        modules={[Navigation, Scrollbar]}
+        spaceBetween={24}
+        slidesPerView={1}
+        navigation
+        scrollbar={{ draggable: true }}
+        breakpoints={{
+          640:  { slidesPerView: 1, spaceBetween: 20 },
+          768:  { slidesPerView: 2, spaceBetween: 24 },
+          1024: { slidesPerView: 3, spaceBetween: 24 },
+          1280: { slidesPerView: 4, spaceBetween: 24 },
+        }}
+        className="pb-10 swiper-with-scrollbar custom-swiper"
       >
         {items.map((p, i) => (
-          <ProductCard
-            key={i}
-            name={p.name}
-            images={p.images}
-            popularityScore={p.popularityScore}
-            price={"$101.00 USD"}
-          />
+          <SwiperSlide key={i} className="flex justify-center">
+            <ProductCard
+              name={p.name}
+              images={p.images}
+              popularityScore={p.popularityScore}
+              price={"$101.00 USD"}
+            />
+          </SwiperSlide>
         ))}
-      </div>
-
-      <button
-        onClick={() => scroll("right")}
-        className="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-2 bg-white/90 hover:bg-white rounded-full shadow"
-        aria-label="Scroll Right"
-      >
-        →
-      </button>
+      </Swiper>
     </div>
   );
 }
