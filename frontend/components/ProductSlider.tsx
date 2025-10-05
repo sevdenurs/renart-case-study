@@ -47,7 +47,7 @@ export default function ProductSlider() {
               name={p.name}
               images={p.images}
               popularityScore={p.popularityScore}
-              price={"$101.00 USD"}
+              price={`$${p.price}`}
             />
           </SwiperSlide>
         ))}
