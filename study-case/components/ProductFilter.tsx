@@ -62,7 +62,7 @@ export default function ProductFilter({ onChange }: Props) {
         <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
           <path d="M3 5h18l-7 8v5l-4 2v-7L3 5z" fill="currentColor" />
         </svg>
-        Filtreler
+        Filters
         <span
           className={`ml-1 inline-block transition-transform ${
             open ? "rotate-180" : "rotate-0"
