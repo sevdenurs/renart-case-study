@@ -25,8 +25,6 @@ export default function ProductSlider() {
 
   return (
     <div className="w-full relative pb-12">
-      <h2 className="text-2xl font-semibold text-center mb-6">Product List</h2>
-
       <Swiper
         modules={[Navigation, Scrollbar]}
         spaceBetween={24}
