@@ -1,0 +1,137 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.swiper-with-scrollbar .swiper-scrollbar {
+  position: relative;
+  height: 4px;
+  background-color: #e5e5e5; 
+  margin-top: 20px;
+  border-radius: 4px;
+}
+
+.swiper-with-scrollbar .swiper-scrollbar-drag {
+  background-color: #757575; 
+  border-radius: 4px;
+}
+
+.custom-swiper {
+  position: relative;
+  padding: 0 60px !important;
+}
+
+.custom-swiper .swiper-button-prev,
+.custom-swiper .swiper-button-next {
+  width: 32px;
+  height: 32px;
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280 !important;
+  transition: all 0.2s ease-in-out;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-top: -20px; 
+}
+
+.custom-swiper .swiper-button-prev {
+  left: 10px !important; 
+}
+
+.custom-swiper .swiper-button-next {
+  right: 10px !important; 
+}
+
+.custom-swiper .swiper-button-prev:hover,
+.custom-swiper .swiper-button-next:hover {
+  color: #111827 !important;
+  background-color: #f3f3f3;
+}
+
+.custom-swiper .swiper-button-prev::after,
+.custom-swiper .swiper-button-next::after {
+  font-size: 12px !important;
+}
+
+@media (max-width: 768px) {
+  .custom-swiper {
+    padding: 0 50px !important;
+  }
+
+  .custom-swiper .swiper-button-prev,
+  .custom-swiper .swiper-button-next {
+    width: 28px;
+    height: 28px;
+  }
+
+  .custom-swiper .swiper-button-prev {
+    left: 8px !important;
+  }
+
+  .custom-swiper .swiper-button-next {
+    right: 8px !important;
+  }
+
+  .custom-swiper .swiper-button-prev::after,
+  .custom-swiper .swiper-button-next::after {
+    font-size: 10px !important;
+  }
+}
+
+
+
+
+/* Montserrat Medium (500) */
+@font-face{
+  font-family:"MontserratLocal";
+  src:url("../public/Fonts/montserat/Montserrat-Medium.otf") format("truetype");
+  font-weight:500;
+  font-style:normal;
+  font-display:swap;
+}
+/* Montserrat Regular (400) */
+@font-face{
+  font-family:"MontserratLocal";
+  src:url("../public/Fonts/montserat/Montserrat-Regular.ttf") format("truetype");
+  font-weight:400;
+  font-style:normal;
+  font-display:swap;
+}
+/* Avenir Book (400) */
+@font-face{
+  font-family:"AvenirBookLocal";
+  src:url("../public/Fonts/avenir/Avenir-Book.ttf") format("truetype");
+  font-weight:400;
+  font-style:normal;
+  font-display:swap;
+}
+
+.font-mont { font-family:"MontserratLocal", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial; }
+.font-avenir { font-family:"AvenirBookLocal", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial; }
