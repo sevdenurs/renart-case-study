@@ -89,7 +89,7 @@ export default function ProductFilter({ onChange }: Props) {
                 pattern="[0-9]*"
                 value={minPriceStr}
                 onChange={(e) => setMinPriceStr(e.target.value)}
-                placeholder="Örn. 300"
+                placeholder="Eg. 300"
                 className="rounded-lg border border-neutral-300 px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-black/10"
               />
             </div>
@@ -100,7 +100,7 @@ export default function ProductFilter({ onChange }: Props) {
                 pattern="[0-9]*"
                 value={maxPriceStr}
                 onChange={(e) => setMaxPriceStr(e.target.value)}
-                placeholder="Örn. 800"
+                placeholder="Eg. 800"
                 className="rounded-lg border border-neutral-300 px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-black/10"
               />
             </div>
@@ -116,7 +116,7 @@ export default function ProductFilter({ onChange }: Props) {
                   aria-pressed={stars === s}
                   onClick={() => setStars(s)}
                   className={`text-lg leading-none ${s <= stars ? "text-yellow-500" : "text-neutral-300"}`}
-                  title={`${s} yıldız`}
+                  title={`${s} star${s > 1 ? "s" : ""}`}
                 >
                   {s <= stars ? "★" : "☆"}
                 </button>

@@ -11,7 +11,7 @@ export type ProductFilters = {
   priceMax?: number;
   popMin?: number;
   popMax?: number;
-  
+
   minPrice?: number;
   maxPrice?: number;
   minPopularity?: number;
@@ -28,7 +28,6 @@ export async function fetchProducts(filters?: ProductFilters): Promise<Product[]
     });
   }
   const url = `${base}/api/products${qs.toString() ? `?${qs}` : ""}`;
-  console.log("Filters sent to API:",url);
   let res: Response;
   try {
     res = await fetch(url, { cache: "no-store" });
@@ -43,6 +42,5 @@ export async function fetchProducts(filters?: ProductFilters): Promise<Product[]
     
   }
   const data = await res.json();
-  console.log("API response status:",data);
   return data;
 }

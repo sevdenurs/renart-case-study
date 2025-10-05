@@ -60,21 +60,12 @@ export async function GET(req: Request) {
       return { ...p, price: Number(price.toFixed(2)) };
     });
 
-    console.log("Gold price per gram:", goldPrice);
-    console.log("Products with prices:", productsWithPrice.map(p => ({
-      name: p.name,
-      price: p.price,
-      popularity: p.popularityScore
-    })));
-    console.log("Filters:", { minPrice, maxPrice, minPopularity, maxPopularity });
 
     let filtered: EnrichedProduct[] = productsWithPrice;
     if (minPrice !== undefined) filtered = filtered.filter((p) => p.price >= minPrice);
     if (maxPrice !== undefined) filtered = filtered.filter((p) => p.price <= maxPrice);
     if (minPopularity !== undefined) filtered = filtered.filter((p) => p.popularityScore >= minPopularity);
     if (maxPopularity !== undefined) filtered = filtered.filter((p) => p.popularityScore <= maxPopularity);
-
-    console.log("Filtered count:", filtered.length);
 
     return NextResponse.json(filtered, { status: 200 });
   } catch (err: unknown) {

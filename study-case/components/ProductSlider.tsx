@@ -19,7 +19,6 @@ export default function ProductSlider() {
     (async () => {
       setLoading(true);
       try {
-        console.log("Applied filters:", filters);
         const data = await fetchProducts(filters);
         setItems(data);
       } catch (err) {
